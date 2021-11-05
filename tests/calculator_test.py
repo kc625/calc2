@@ -27,7 +27,20 @@ def test_calculator_subtract():
     assert calc.get_result() == -1
 
 def test_calculator_multiply():
-    """To test the multiply method of the calculator"""
+    """Testing the multiply method of the calculator"""
     calc = Calculator()
     calc.multiply_numbers(1,2)
     assert calc.get_result() == 2
+
+def test_calculator_divide():
+    """Testing the divide method of the calculator"""
+    calc = Calculator()
+    calc.divide_numbers(12,3)
+    assert calc.get_result() == 4
+
+def test_calculator_divide_by_zero():
+    """Tessting the divide method of the calculator
+    when someone attempts to divide by zero"""
+    calc = Calculator()
+    calc.divide_numbers(4,0)
+    assert calc.get_error() == "Error, cannot divide by zero"
