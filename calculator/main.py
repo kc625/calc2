@@ -1,37 +1,31 @@
-"""This class increments the result"""
+"""This class performs the basic calculator functions"""
 class Calculator:
     """ This is my Calculator class"""
 
     result = 0
-    error = ""
 
-    def get_result(self):
-        """Returns the result of a calculation"""
-        return self.result
+    @staticmethod
+    def add_numbers(value_a, value_b):
+        """adds value_a and value_b"""
+        result = value_a + value_b
+        return result
 
-    def get_error(self):
-        """Displays Error Message"""
-        return self.error
+    @staticmethod
+    def subtract_numbers(value_a, value_b):
+        """subtracts value_b from value_a"""
+        result = value_a - value_b
+        return result
 
-    def add_number(self, value_a):
-        """adds given number to result"""
-        self.result += value_a
-        return self.result
-
-    def subtract_number(self, value_a):
-        """subtracts given number from result"""
-        self.result -= value_a
-        return self.result
-
-    def multiply_numbers(self, value_a, value_b):
+    @staticmethod
+    def multiply_numbers(value_a, value_b):
         """multiplies value_a by value_b"""
-        self.result = value_a * value_b
-        return self.result
+        result = value_a * value_b
+        return result
 
-    def divide_numbers(self, value_a, value_b):
+    @staticmethod
+    def divide_numbers(value_a, value_b):
         """divides value_a by value_b, displays an error if value_b is 0"""
         if value_b == 0:
-            self.error = "Error, cannot divide by zero."
-            return self.error
-        self.result = value_a / value_b
-        return self.result
+            return "Error, cannot divide by zero."
+        result = value_a / value_b
+        return result
