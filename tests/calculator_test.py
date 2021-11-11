@@ -1,12 +1,7 @@
 """This tests the Calculator class"""
 from calculator.main import Calculator
 
-def test_calculator_initial_result():
-    """testing that Calculator result is initially 0"""
-    calc = Calculator()
-    assert calc.result == 0
-
-def test_calculator_add_number():
+def test_calculator_add():
     """Testing the add method of the calculator"""
     calc = Calculator()
     assert calc.add_numbers(3,5) == 8
