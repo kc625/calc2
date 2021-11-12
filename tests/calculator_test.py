@@ -8,6 +8,16 @@ def clear_history():
     """Clears the history so that each test starts with a blank history"""
     Calculator.clear_history()
 
+def test_get_history(clear_history):
+    """Testing the get history function"""
+    # pylint: disable=redefined-outer-name
+    # pylint: disable=unused-argument
+    calc = Calculator()
+    assert calc.add_numbers(3, 5) == 8
+    assert calc.add_numbers(2, 5) == 7
+    assert calc.add_numbers(1, 9) == 10
+    assert calc.get_history() == Calculator.history
+
 def test_calculator_add(clear_history):
     """Testing the add method of the calculator"""
     # pylint: disable=redefined-outer-name

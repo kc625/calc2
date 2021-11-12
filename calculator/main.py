@@ -10,6 +10,11 @@ class Calculator:
     history = []
 
     @staticmethod
+    def get_history():
+        """Returns the full history"""
+        return Calculator.history
+
+    @staticmethod
     def clear_history():
         """Clears all values in history"""
         Calculator.history.clear()
