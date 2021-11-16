@@ -1,11 +1,14 @@
-"""This is the division calculation. Values A and B come from the Calculation class"""
+"""This is the Division Class"""
 from calc.calculations.calculation import Calculation
 
 class Division(Calculation):
-    """The Division class has one method, to get the result of the calculation.
-    A and B come from the Calculation parent Class"""
+    """Class for the Division calculation"""
+
     def get_result(self):
         """This does the actual division. Displays an error if dividing by 0"""
-        if self.value_b == 0:
-            return "Error, cannot divide by zero."
-        return self.value_a / self.value_b
+        quotient = self.values[0]
+        for value in self.values[1:]:
+            if value == 0.0:
+                return "Error, cannot divide by zero."
+            quotient = quotient / value
+        return quotient

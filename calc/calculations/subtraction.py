@@ -1,9 +1,12 @@
-"""This is the subtraction calculation. Values A and B come from the Calculation class"""
+"""This is the Subtraction Class"""
 from calc.calculations.calculation import Calculation
 
 class Subtraction(Calculation):
-    """The Subtraction class has one method, to get the result of the calculation.
-    A and B come from the Calculation parent Class"""
+    """Class for the Subtraction calculation"""
+
     def get_result(self):
         """This does the actual subtraction."""
-        return self.value_a - self.value_b
+        difference = self.values[0]
+        for value in self.values[1:]:
+            difference = difference - value
+        return difference

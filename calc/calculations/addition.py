@@ -1,9 +1,12 @@
-"""This is the addition calculation. Values A and B come from the Calculation class"""
+"""This is the Addition Class"""
 from calc.calculations.calculation import Calculation
 
 class Addition(Calculation):
-    """The Addition class has one method, to get the result of the calculation.
-    A and B come from the Calculation parent Class"""
+    """Class for the Addition calculation"""
+
     def get_result(self):
-        """This does the actual addition"""
-        return self.value_a + self.value_b
+        """This does the actual addition."""
+        total_sum = 0.0
+        for value in self.values:
+            total_sum = value + total_sum
+        return total_sum
