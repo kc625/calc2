@@ -1,5 +1,5 @@
 """This is the multiplication calculation. Values A and B come from the Calculation class"""
-from calc.calculation import Calculation
+from calc.calculations.calculation import Calculation
 
 class Multiplication(Calculation):
     """The Multiplication class has one method, to get the result of the calculation.

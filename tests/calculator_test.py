@@ -1,7 +1,7 @@
 """This tests the Calculator class"""
 import pytest
 
-from calculator.main import Calculator
+from calc.calculator import Calculator
 
 @pytest.fixture
 def clear_history():

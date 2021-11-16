@@ -1,5 +1,5 @@
 """This is the addition calculation. Values A and B come from the Calculation class"""
-from calc.calculation import Calculation
+from calc.calculations.calculation import Calculation
 
 class Addition(Calculation):
     """The Addition class has one method, to get the result of the calculation.
