@@ -11,27 +11,27 @@ class Calculator:
     @staticmethod
     def add_numbers(*args):
         """adds list of numbers"""
-        addition = Addition(args)
-        Calculations.history.append(addition)
-        return addition.get_result
+        calculation = Addition(args)
+        Calculations.add_calculation(calculation)
+        return calculation.get_result()
 
     @staticmethod
     def subtract_numbers(*args):
         """subtracts a list of numbers from result"""
-        subtraction = Subtraction(args)
-        Calculations.history.append(subtraction)
-        return subtraction.get_result()
+        calculation = Subtraction(args)
+        Calculations.add_calculation(calculation)
+        return calculation.get_result()
 
     @staticmethod
     def multiply_numbers(*args):
         """multiplies all numbers together"""
-        multiplication = Multiplication(args)
-        Calculations.history.append(multiplication)
-        return multiplication.get_result()
+        calculation = Multiplication(args)
+        Calculations.add_calculation(calculation)
+        return calculation.get_result()
 
     @staticmethod
     def divide_numbers(*args):
         """divides each number in the list by the next one, returns an error if any # after the first is 0"""
-        division = Division(args)
-        Calculations.history.append(division)
-        return division.get_result()
+        calculation = Division(args)
+        Calculations.add_calculation(calculation)
+        return calculation.get_result()
