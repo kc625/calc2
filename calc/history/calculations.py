@@ -34,3 +34,7 @@ class Calculations:
     def add_calculation(calculation):
         """Adds a specific calculation to history"""
         return Calculations.history.append(calculation)
+
+    @staticmethod
+    def count_history():
+        return len(Calculations.history)
