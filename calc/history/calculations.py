@@ -1,5 +1,6 @@
 """Calculation history class"""
 class Calculations:
+    """This class works with the history of the calculator"""
 
     history = []
     # pylint: disable=too-few-public-methods
@@ -37,4 +38,5 @@ class Calculations:
 
     @staticmethod
     def count_history():
+        """Returns the number of items in the history"""
         return len(Calculations.history)

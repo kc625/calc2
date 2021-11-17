@@ -31,7 +31,7 @@ class Calculator:
 
     @staticmethod
     def divide_numbers(*args):
-        """divides each number in the list by the next one, returns an error if any # after the first is 0"""
+        """divides number in list by the next, returns error if any # after the first is 0"""
         calculation = Division(args)
         Calculations.add_calculation(calculation)
         return calculation.get_result()
