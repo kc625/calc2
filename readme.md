@@ -1,4 +1,5 @@
 # Calculator Project Setup
+[![Build Status](https://app.travis-ci.com/kc625/calc2.svg?branch=calc_refactor)](https://app.travis-ci.com/kc625/calc2)
 
 Run Pip Install
 pip install -r requirements.txt
