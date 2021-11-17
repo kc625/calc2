@@ -38,21 +38,26 @@ def test_count_history(clear_history_fixture, setup_addition_calculation_fixture
     assert Calculations.count_history() == 1
 
 def test_get_last_calculation_result(clear_history_fixture, setup_addition_calculation_fixture):
-    """Tests that the get last calculation function works"""
+    """Tests that the get last calculation result function works"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculations.get_last_calculation().get_result() == 3
+    assert Calculations.get_last_calculation_result() == 3
 
 def test_get_first_calculation_result(clear_history_fixture, setup_addition_calculation_fixture):
-    """Tests that the get first result function works"""
+    """Tests that the get first calculation result function works"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculations.get_first_calculation().get_result() == 3
+    assert Calculations.get_first_calculation_result() == 3
 
 def test_get_calculation_result(clear_history_fixture, setup_addition_calculation_fixture):
-    """Tests that the get calculation result function works"""
+    """Tests that the get calculation function works"""
     # pylint: disable=redefined-outer-name,unused-argument
     assert Calculations.get_calculation(0).get_result() == 3
 
-def test_get_history(clear_history_fixture, setup_addition_calculation_fixture):
-    """Testing the get history function"""
+def test_get_last_calculation_object(clear_history_fixture, setup_addition_calculation_fixture):
+    """Tests that the get last calculation object function works"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculations.get_history() == Calculations.history
+    assert isinstance(Calculations.get_last_calculation_object(), Addition)
+
+def test_get_first_calculation_object(clear_history_fixture, setup_addition_calculation_fixture):
+    """Tests that the get first calculation object function works"""
+    # pylint: disable=redefined-outer-name,unused-argument
+    assert isinstance(Calculations.get_first_calculation_object(), Addition)

@@ -9,4 +9,4 @@ script:
 
 branches:
   only:
-    - calc_with_history
+    - calc_refactor

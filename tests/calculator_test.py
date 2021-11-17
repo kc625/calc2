@@ -8,27 +8,37 @@ def clear_history_fixture():
     """Clears the history so that each test starts with a blank history"""
     Calculations.clear_history()
 
-def test_calculator_add(clear_history_fixture):
-    """Testing the add method of the calculator"""
+def test_calculator_add_static(clear_history_fixture):
+    """Testing the static add method of the calculator"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculator.add_numbers(1.0, 3.0, 5.0) == 9.0
+    my_tuple = (1.0, 3.0, 5.0)
+    Calculator.add_numbers(my_tuple)
+    assert Calculator.get_last_result_value() == 9.0
 
-def test_calculator_subtract(clear_history_fixture):
+def test_calculator_subtract_static(clear_history_fixture):
     """Testing the subtract method of the calculator"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculator.subtract_numbers(5.0, 2.0) == 3.0
+    my_tuple = (5.0, 2.0, 1.0)
+    Calculator.subtract_numbers(my_tuple)
+    assert Calculator.get_last_result_value() == 2.0
 
 def test_calculator_multiply(clear_history_fixture):
-    """Testing the multiply method of the calculator"""
+    """Testing the static multiply method of the calculator"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculator.multiply_numbers(4.0, 5.0) == 20
+    my_tuple = (4.0, 5.0, 2.0)
+    Calculator.multiply_numbers(my_tuple)
+    assert Calculator.get_last_result_value() == 40.0
 
 def test_calculator_divide(clear_history_fixture):
     """Testing the divide method of the calculator"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculator.divide_numbers(18.0, 3.0) == 6.0
+    my_tuple = (18.0, 3.0, 2.0)
+    Calculator.divide_numbers(my_tuple)
+    assert Calculator.get_last_result_value() == 3.0
 
 def test_calculator_divide_by_zero(clear_history_fixture):
     """Testing the divide method of the calculator if someone attempts to divide by zero"""
     # pylint: disable=redefined-outer-name,unused-argument
-    assert Calculator.divide_numbers(4.0, 0.0) == "Error, cannot divide by zero."
+    my_tuple = (18.0, 3.0, 0.0)
+    Calculator.divide_numbers(my_tuple)
+    assert Calculator.get_last_result_value() == "Error, cannot divide by zero."
