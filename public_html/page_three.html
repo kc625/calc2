@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Four Core Principles of OOP</title>
+    <meta name="description" content="This is an example of a meta description.
+    This will often show up in search results.">
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #primaryLinks {
+            height: 100px;
+            margin: 0;
+            line-height: 100px;
+            width: 1000px;
+            text-align: right;
+            padding: 0;
+        }
+        #primaryLinks li {
+            display: inline;
+        }
+        #primaryLinks menu {
+            padding-top: 0;
+            padding-left: 0;
+        }
+        #logo {
+            font-size: x-large;
+        }
+        #logo img {
+            width: 100px;
+        }
+        #primaryContent {
+            width: 1000px;
+            text-align: left;
+            font-size: large;
+        }
+        #wrapper {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #footer {
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+        }
+        .clearFix {
+            clear: both;
+        }
+        .floatLeft {
+            float: left;
+        }
+    </style>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="logo" class="floatLeft">
+        <img src="images/fediverse_logo_proposal.svg" alt="An Interconnected World!"/>
+        Python For Everyone!
+    </div>
+    <menu id="primaryLinks">
+        <li><a href="index.html">Pylint Tips & Tricks</a></li>
+        <li>|</li>
+        <li><a href="page_two.html">AAA Testing</a></li>
+        <li>|</li>
+        <li><a href="page_three.html">OOP Principles</a></li>
+        <li>|</li>
+        <li><a href="page_four.html">Separation of Concerns</a></li>
+    </menu>
+    <hr>
+    <h1>The Four Core Principles of Object-Oriented Programming</h1>
+    <article id="primaryContent">
+        <hr>
+        <h2>What are the Four Core Principles?</h2>
+        <p>
+            Object-Oriented Programming (OOP) can be a powerful tool when implemented properly. In order for us to make sure we are utilizing it to its fullest extent, we have to be sure we are sticking to the four fundamental concepts of OOP. These are also known as the four core principles. These principles are Encapsulation, Inheritance, Polymorphism, and Abstraction. The rest of this article will define what each of these terms mean, as well as show how our Calculator program utilizes them all.
+        </p>
+        <h3>Encapsulation</h3>
+        <p>
+            Encapsulation is the idea of wrapping data and the methods that work on that data within one unit. This way there are restrictions placed on accessing variables and methods directly. This is useful as it can prevent accidental modifications of data. With encapsulation, an object's variable can only be changed by a method from that same object. A class is an example of encapsulation, as it bundles methods and data into a singular unit.
+        </p>
+        <h3>Inheritance</h3>
+        <p>
+            Inheritance is the ability to define a class that derives or inherits all the methods and properties of another class. This is very useful as it provides us with reusability of code. We don't have to rewrite the same code several times over, we can simply inherit from another class to gain all the functionality of that class without adding the same code. The class that is inherited from is often called the base class or the parent class. The class that inherits from another class is often called the derived class or the child class.
+        </p>
+        <h3>Polymorphism</h3>
+        <p>
+            Polymorphism is derived from the Greek words of "poly" and "morphism" which directly translates to "having many forms." In terms of programming, it is the idea that the same function can be used on several objects, without us being concerned about the class type of those objects. Essentially, it is the idea that one function or method should be able to work on many things. Like inheritance, it is a focus on reusability of code.
+        </p>
+        <h3>Abstraction</h3>
+        <p>
+            Abstraction is a technique used to hide the internal functionalities of a function from the end user. The end user is only familiar with what the function does, they are not concerned how it does it. When used in programming, an abstract base class is created that can be thought of as a blueprint for other classes. Important but complicated functionality can be placed in your abstract class, away from where a user interacts with your program. Then a common interface can be provided for the user that is able to pull functionality from your abstract classes. This streamlines ease of use and enhances an application's efficiency.
+        </p>
+        <h2>The Four Core Principles in Action</h2>
+        <p>
+            Definitions are sometimes hard to grasp without concrete examples to go along with them. Not to worry! The Calculator program we created utilizes each of these core principles. I'll show you how.
+        </p>
+        <h3>Encapsulation</h3>
+        <p>
+            As you know, we have built in a history attribute for our Calculator. This allows us to keep track of all the calculations we have done. We can pull out the most recent or the first calculation in the history, clear the history to start over, and more. However, take a look at our Calculator class and see if you notice anything.
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """This class performs the basic calculator functions"""
+
+    from calc.history.calculations import Calculations
+
+    class Calculator:
+        """This is my Calculator class"""
+
+        @staticmethod
+        def add_numbers(tuple_values: tuple):
+            """Adds a tuple of numbers together"""
+            Calculations.add_addition_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def subtract_numbers(tuple_values: tuple):
+            """Subtracts a tuple of numbers from the first value"""
+            Calculations.add_subtraction_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def multiply_numbers(tuple_values: tuple):
+            """Multiplies a tuple of numbers together"""
+            Calculations.add_multiplication_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def divide_numbers(tuple_values: tuple):
+            """Divides number in tuple by the next, returns error if any # after the first is 0"""
+            Calculations.add_division_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def get_last_result_value():
+            """This will get the result of the last calculation"""
+            return Calculations.get_last_calculation_result()
+            </code>
+        </p>
+        <p>
+            Did you catch it? Nothing within our Calculator class is actually directly accessing or changing the history attribute. That is because the history attribute is encapsulated within the Calculations class. We import the Calculations class into our Calculator class so that we have the ability to work with the history attribute. But to do so, our Calculator's methods are calling methods from the Calculations class. Here's a snippet of our Calculations class:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """Calculation history class"""
+
+    from calc.calculations.addition import Addition
+    from calc.calculations.subtraction import Subtraction
+    from calc.calculations.multiplication import Multiplication
+    from calc.calculations.division import Division
+
+    class Calculations:
+        """This class works with the history of the calculator"""
+
+        history = []
+
+        @staticmethod
+        def add_calculation(calculation):
+            """Adds a specific calculation to history"""
+            return Calculations.history.append(calculation)
+
+        @staticmethod
+        def add_addition_calculation(values):
+            """Creates an addition object and adds it to history using factory method create"""
+            Calculations.add_calculation(Addition.create(values))
+            return True
+
+        @staticmethod
+        def add_subtraction_calculation(values):
+            """Creates a subtraction object and adds it to history using factory method create"""
+            Calculations.add_calculation(Subtraction.create(values))
+            return True
+
+        @staticmethod
+        def get_last_calculation_object():
+            """Returns last calculation in history"""
+            return Calculations.history[-1]
+
+        @staticmethod
+        def get_last_calculation_result():
+            """Returns value of last calculation in history"""
+            calculation = Calculations.get_last_calculation_object()
+            return calculation.get_result()
+
+        @staticmethod
+        def clear_history():
+            """Clears all values in history"""
+            Calculations.history.clear()
+            return True
+
+    ...
+            </code>
+        </p>
+        <p>
+            This is only about half of our Calculations class. The rest is filled with more methods that do similar manipulating of the history attribute, like <code>add_multiplication_calculation</code> or <code>get_first_calculation_result</code>. But this snippet is enough to show the encapsulation that is occurring. The methods within the Calculations class are the only ones able to modify the history attribute, because it is an attribute that belongs to the Calculations class. We want our Calculator class to be able to impact history, so we have to do so by calling methods from Calculations in the methods of Calculator.
+        </p>
+        <h3>Inheritance</h3>
+        <p>
+            Behind the scenes of our Calculator program, we have a couple of classes that are dedicated to making the actual calculations happen. One of them is our Calculation class. This is actually our base class, or otherwise known as our parent class. It looks like the following:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """This is our base Calculation class"""
+
+    class Calculation:
+        """Abstract Base Class used for the other calculations"""
+
+        def __init__(self, values: tuple):
+            """Constructor method"""
+            self.values = Calculation.convert_args_to_tuple_of_floats(values)
+
+        @classmethod
+        def create(cls, values: tuple):
+            """Factory Method"""
+            return cls(values)
+
+        @staticmethod
+        def convert_args_to_tuple_of_floats(values):
+            """standardizes values to a tuple of floats"""
+            list_values_float = []
+            for item in values:
+                list_values_float.append(float(item))
+            return tuple(list_values_float)
+            </code>
+        </p>
+        <p>
+            Our Calculation class has a constructor method, <code>__init__</code>, that takes in a group of values, ideally a tuple, as a parameter. It then calls another method of the Calculation class that converts those values into a tuple of floats. It also contains a factory method for creating new objects. All of these methods are useful functionality for us, and they are the first steps to doing our calculations. However, since we need to do these at the beginning of each calculation, these same methods would need to be coded into the classes for Addition, Subtraction, Multiplication, and Division. Instead of making more work for ourselves, we coded those steps once in the Calculation class, and we will use it as a parent class to the four arithmetic classes. Take a look at our Multiplication class below.
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """This is the Multiplication Class"""
+
+    from calc.calculations.calculation import Calculation
+
+    class Multiplication(Calculation):
+        """Class for the Multiplication calculation"""
+
+        def get_result(self):
+            """This does the actual multiplication."""
+            product = 1.0
+            for value in self.values:
+                product = product * value
+            return product
+            </code>
+        </p>
+        <p>
+            We import the Calculation class into this file, then we pass the Calculation class into the Multiplication class. This means the Multiplication class is now a child of the Calculation class. We do the same for the Addition, Subtraction, and Division classes. See that there is only one method within the Multiplication class, <code>get_result</code>, which does the actual multiplication on the tuple of values. This is because we are also inheriting all the methods from the Calculation class, which is where that tuple of values is coming from.
+        </p>
+        <h3>Polymorphism</h3>
+        <p>
+            The best way to see Polymorphism in action within our Calculator program, is if we take another look at the Calculations class.  Here is another snippet of it:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """Calculation history class"""
+
+    from calc.calculations.addition import Addition
+    from calc.calculations.subtraction import Subtraction
+    from calc.calculations.multiplication import Multiplication
+    from calc.calculations.division import Division
+
+    class Calculations:
+        """This class works with the history of the calculator"""
+
+        history = []
+
+        @staticmethod
+        def add_calculation(calculation):
+            """Adds a specific calculation to history"""
+            return Calculations.history.append(calculation)
+
+        @staticmethod
+        def add_addition_calculation(values):
+            """Creates an addition object and adds it to history using factory method create"""
+            Calculations.add_calculation(Addition.create(values))
+            return True
+
+        @staticmethod
+        def add_subtraction_calculation(values):
+            """Creates a subtraction object and adds it to history using factory method create"""
+            Calculations.add_calculation(Subtraction.create(values))
+            return True
+
+        @staticmethod
+        def add_multiplication_calculation(values):
+            """Creates a multiplication object and adds it to history using factory method create"""
+            Calculations.add_calculation(Multiplication.create(values))
+            return True
+
+        @staticmethod
+        def add_division_calculation(values):
+            """Creates a division object and adds it to history using factory method create"""
+            Calculations.add_calculation(Division.create(values))
+            return True
+
+    ...
+            </code>
+        </p>
+        <p>
+            As we can see, we have the <code>add_calculation</code> method within the Calculations class. That same method is then called in the next four listed methods: <code>add_addition_calculation</code>, <code>add_subtraction_calculation</code>, <code>add_multiplication_calculation</code>, and <code>add_division_calculation</code>. Each of those four methods are passing different objects to the same method, but each of them are working properly and without issue. That is an example of Polymorphism. There's another example of it within those same four methods. Each is also calling the same <code>create</code> method from the Calculation class. But since Addition, Subtraction, Multiplication, and Division are all child classes to Calculation, they are all capable of utilizing it.
+        </p>
+        <h3>Abstraction</h3>
+        <p>
+            Our entire Calculator program is riddled with Abstraction. I'll start with the class that the end-user interacts with directly, the Calculator class. Here it is below.
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """This class performs the basic calculator functions"""
+
+    from calc.history.calculations import Calculations
+
+    class Calculator:
+        """This is my Calculator class"""
+
+        @staticmethod
+        def add_numbers(tuple_values: tuple):
+            """Adds a tuple of numbers together"""
+            Calculations.add_addition_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def subtract_numbers(tuple_values: tuple):
+            """Subtracts a tuple of numbers from the first value"""
+            Calculations.add_subtraction_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def multiply_numbers(tuple_values: tuple):
+            """Multiplies a tuple of numbers together"""
+            Calculations.add_multiplication_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def divide_numbers(tuple_values: tuple):
+            """Divides number in tuple by the next, returns error if any # after the first is 0"""
+            Calculations.add_division_calculation(tuple_values)
+            return True
+
+        @staticmethod
+        def get_last_result_value():
+            """This will get the result of the last calculation"""
+            return Calculations.get_last_calculation_result()
+            </code>
+        </p>
+        <p>
+            The user knows that these methods like <code>add_numbers</code> and <code>divide_numbers</code> work as intended. That is all they care about. But when we are looking at the Calculator class, we can't actually see the calculations happening in the code, because the arithmetic is hidden within other classes. First, in the methods of the Calculations class that Calculator is calling. Like in the following portion of the Calculations class:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """Calculation history class"""
+
+    from calc.calculations.addition import Addition
+    from calc.calculations.subtraction import Subtraction
+    from calc.calculations.multiplication import Multiplication
+    from calc.calculations.division import Division
+
+    class Calculations:
+        """This class works with the history of the calculator"""
+
+        history = []
+
+        @staticmethod
+        def add_calculation(calculation):
+            """Adds a specific calculation to history"""
+            return Calculations.history.append(calculation)
+
+        @staticmethod
+        def add_addition_calculation(values):
+            """Creates an addition object and adds it to history using factory method create"""
+            Calculations.add_calculation(Addition.create(values))
+            return True
+
+        @staticmethod
+        def add_subtraction_calculation(values):
+            """Creates a subtraction object and adds it to history using factory method create"""
+            Calculations.add_calculation(Subtraction.create(values))
+            return True
+
+        @staticmethod
+        def add_multiplication_calculation(values):
+            """Creates a multiplication object and adds it to history using factory method create"""
+            Calculations.add_calculation(Multiplication.create(values))
+            return True
+
+        @staticmethod
+        def add_division_calculation(values):
+            """Creates a division object and adds it to history using factory method create"""
+            Calculations.add_calculation(Division.create(values))
+            return True
+
+    ...
+            </code>
+        </p>
+        <p>
+            But, when we are looking at the Calculations class, we notice that we still aren't seeing the actual arithmetic being done! We see that the Calculations class is calling the Addition, Subtraction, Multiplication, and Division classes. Let's go a step even further, and take a look at the Subtraction class.
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    """This is the Subtraction Class"""
+
+    from calc.calculations.calculation import Calculation
+
+    class Subtraction(Calculation):
+        """Class for the Subtraction calculation"""
+
+        def get_result(self):
+            """This does the actual subtraction."""
+            difference = self.values[0]
+            for value in self.values[1:]:
+                difference = difference - value
+            return difference
+            </code>
+        </p>
+        <p>
+            Finally, we see where the actual arithmetic is happening. This is true for the Addition, Multiplication, and Division classes as well. This goes a step even further, though. As I mentioned in the explanation of Inheritance, the Calculation class is a parent class for the four arithmetic classes. It is our abstract base class. It's the blueprint that all the other classes (especially the Addition, Subtraction, Multiplication, and Division classes) build off of. So even though our end users interact with the Calculator class, there's actually several classes working behind the scenes to make that Calculator class work. That, is Abstraction.
+        </p>
+    </article>
+    <hr>
+    <footer id="footer" class="clearFix">
+        <p>
+            <a href="https://commons.wikimedia.org/w/index.php?curid=70845534">"File:Fediverse logo proposal.svg"</a><span> by <a href="https://commons.wikimedia.org/wiki/User:Eukombos">Eukombos</a></span> is licensed under <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en?ref=ccsearch&atype=html">CC0 1.0</a>
+        </p>
+        <p>
+            <a href="https://github.com/kc625/calc2/tree/calc_refactor">Link to GitHub Repository for the Calculator</a>
+        </p>
+        <p>
+            <a href="https://github.com/kc625/is601-project1/tree/Project_2">Link to GitHub Repository for these Articles</a>
+        </p>
+        <img src="images/w3c.png" alt="W3C Validated"/>
+    </footer>
+</div>
+</body>
+</html>

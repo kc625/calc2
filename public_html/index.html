@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pylint Tips and OOP Glossary</title>
+    <meta name="description" content="This is an example of a meta description.
+    This will often show up in search results.">
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #primaryLinks {
+            height: 100px;
+            margin: 0;
+            line-height: 100px;
+            width: 1000px;
+            text-align: right;
+            padding: 0;
+        }
+        #primaryLinks li {
+            display: inline;
+        }
+        #primaryLinks menu {
+            padding-top: 0;
+            padding-left: 0;
+        }
+        #logo {
+            font-size: x-large;
+        }
+        #logo img {
+            width: 100px;
+        }
+        #primaryContent {
+            width: 1000px;
+            text-align: left;
+            font-size: large;
+        }
+        #wrapper {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #footer {
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+        }
+        .clearFix {
+            clear: both;
+        }
+        .floatLeft {
+            float: left;
+        }
+    </style>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="logo" class="floatLeft">
+        <img src="images/fediverse_logo_proposal.svg" alt="An Interconnected World!"/>
+        Python For Everyone!
+    </div>
+    <menu id="primaryLinks">
+        <li><a href="index.html">Pylint Tips & Tricks</a></li>
+        <li>|</li>
+        <li><a href="page_two.html">AAA Testing</a></li>
+        <li>|</li>
+        <li><a href="page_three.html">OOP Principles</a></li>
+        <li>|</li>
+        <li><a href="page_four.html">Separation of Concerns</a></li>
+    </menu>
+    <hr>
+    <h1>Pylint Tips & Tricks! Bonus: Glossary of OOP Terms</h1>
+    <article id="primaryContent">
+        <hr>
+        <h2>What Exactly is Pylint?</h2>
+        <p>
+            When it comes to programming, linting is the checking of your code for syntactical or stylistic errors. This is typically done through an automated process with something called a lint tool (or linter). Pylint is one such lint tool that works on Python code. Pylint not only checks for errors in your code, but it also tries to enforce a certain coding standard when it comes to the stylistic and visual choices you make when writing a program. Most would argue that this is where linters have their greatest value. Sure, catching the actual errors within your program is important, but those errors would also be revealed when running or testing your programs. Following a linter's stylistic suggestions, however, can help you take the next step in becoming a better programmer. The first time that a new programmer uses Pylint to evaluate their code, they are probably going to receive several errors. And that's okay! Most of those errors will probably be related to the stylistic standard I keep mentioning, and those errors are usually easy to fix.
+        </p>
+        <h2>Common Pylint Errors (and how to fix them!)</h2>
+        <p>
+            As mentioned already, those new to using Pylint will probably run into a decent amount of errors early on. The following errors are likely to be encountered. Here are some tips on how to fix them.
+        </p>
+        <h3>Final Newline Missing</h3>
+        <p>
+            If you receive the <code>missing-final-newline</code> error, then that means your program has ended on a line that contains code in it. To resolve this error, simply return to a new line at the end and leave that final line blank. The reason this blank newline is needed, is because historically some tools have had problems reading files if the last line has text on it but does not have a newline at the end. While this is not always the case for Python tools nowadays, it is still good practice to end each file with a newline.
+        </p>
+        <h3>Missing Docstring</h3>
+        <p>
+            A missing docstring error could actually appear in a couple of forms. You may get this error pertaining to one of your classes with <code>missing-class-docstring</code> or possibly one of your functions with <code>missing-function-docstring</code>. Another missing docstring error you may encounter is the <code>missing-module-docstring</code> if you didn't add a docstring to the beginning of your file. Docstrings are important. They let someone else that has never seen your program before, quickly look at your code and get instant clues to what you are trying to accomplish. If you get a missing docstring error, add one where the error specifies, like the following. The docstrings are highlighted in green:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+        <span style="color: green">"""This is our base Calculation Class"""</span>
+    class Calculation:
+        <span style="color: green">"""Abstract base class used for all other calculations"""</span>
+
+        def __init__(self, values: tuple):
+            <span style="color: green">"""Constructor method"""</span>
+            self.values = Calculation.convert_args_to_tuple_of_floats(values)
+            </code>
+        <h3>Line Too Long</h3>
+        <p>
+            Pylint gives you a <code>line-too-long</code> error if any line of your code has greater than 100 characters in it. When we are coding, we should aim to accomplish our goal as succinctly as possible. This is true for total lines of code, as well as how long each line is. You are likely to see this error in reference to a line that contains a docstring. In that case, simply shorten the description within your docstring so that it is under the recommended 100-character limit. If it is referencing a line that contains actual code, perhaps consider alternate ways of achieving the same outcome. Preferably with more, but shorter, lines of code.
+        </p>
+        <h3>Unused Variable</h3>
+        <p>
+            Within the functions we create, we often have the ability to define and use variables. If we are not careful though, we may accidentally create variables that we do not actually use within the function. Consider the following block of code:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    @staticmethod
+    def convert_args_to_tuple_of_floats(values):
+        """Standardizes values to a tuple of floats"""
+        list_values_float = []
+        <span style="color: red">unnecessary_list = []</span>
+        for item in values:
+            list_values_float.append(float(item))
+        return tuple(list_values_float)
+            </code>
+        </p>
+        <p>
+            If we had this function in our program, Pylint would give us an <code>unused-variable</code> error. Notice the list variable we created that is highlighted in red, <code>unnecessary_list</code>. After defining it, we do not use it for the rest of the function. If that variable was removed, this function would produce the same output and have the same functionality to users. To resolve this error, we should remove the unused variable completely.
+        </p>
+        <h3>Invalid Name</h3>
+        <p>
+            Pylint prefers we use the naming convention known as snake case when naming our variables, functions, etc. as opposed to other popular conventions like camel case. If you receive an <code>invalid-name</code> error from Pylint, one of your functions or variables is likely named in camel case. What's the difference? This is one of our functions named in camel case: <code>getLastCalculationResult()</code>. This is the same function named in snake case: <code>get_last_calculation_result()</code>. Do you see how, thanks to the underscores present, the latter is a bit clearer and easier to read? This is especially true the longer a variable or function name is. This is why Pylint prefers snake case.
+        </p>
+        <h3>Unnecessary Else Statement</h3>
+        <p>
+            Consider the following function that is a part of our Division class:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    def get_result(self):
+        """This does the actual division. Displays an error if dividing by 0"""
+        quotient = self.values[0]
+        for value in self.values[1:]
+            if value == 0.0:
+                return "Error, cannot divide by zero."
+            else:
+                quotient = quotient / value
+        return quotient
+            </code>
+        </p>
+        <p>
+            This function takes a tuple of floats as a parameter and sets a variable equal to the first value of the tuple. It then loops through the rest of the values and checks to see if they are equivalent to 0. If the value is, it returns an error message. If it isn't, the function divides the first value by each consecutive value. However, if we use this function in a program, Pylint gives us a <code>no-else-return</code> error. What does this mean? Pylint is trying to tell us that the <code>else</code> is actually unnecessary, as it is redundant. Should <code>if value == 0.0</code> be evaluated as false, our program will move on to <code>quotient = quotient / value</code> regardless of whether the actual <code>else</code> is present or not. So for the sake of brevity, we can cut that line out of our code, and the following, more streamlined version of the function would work exactly the same:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    def get_result(self):
+        """This does the actual division. Displays an error if dividing by 0"""
+        quotient = self.values[0]
+        for value in self.values[1:]
+            if value == 0.0:
+                return "Error, cannot divide by zero."
+            quotient = quotient / value
+        return quotient
+            </code>
+        </p>
+        <h3>Disabling Pylint Errors</h3>
+        <p>
+            Another important thing to know is how to disable an error that Pylint is giving you. This is something that should only be done sparingly, as most of the time Pylint's suggestions are very helpful for us. However, Pylint does not always know what is best. For example, when testing our Calculation class, we receive an error from Pylint stating <code>too-few-public-methods</code>. What this error means, is that Pylint feels our Calculation class does not have enough usable methods to make it worthwhile. It wants us to either add more methods to give the class more functionality, or find another way to accomplish the same as <code>Calculation</code> but without a class. But like I said, Pylint does not always know what is best, and we definitely want to use a class here. It also has all the functionality we need, so we don't have to add more methods to it. In this situation, we can disable the <code>too-few-public-methods</code> error that Pylint is giving us. To do so, we simply enter a comment with a specific wording that Pylint will recognize. We add it where Pylint is suggesting the error is occurring. In this case, that would be right after defining the class. It would look like the following, with our disable comment highlighted in green:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    class Calculation:
+        """Abstract Base Class used for the other calculations"""
+        <span style="color: green"># pylint: disable=too-few-public-methods</span>
+
+    ...
+            </code>
+        </p>
+        <hr>
+        <h1>Glossary of Python and Object-Oriented Programming Terms</h1>
+        <h2>Class</h2>
+        <p>
+            A template for creating user-defined objects. Like a blueprint to a house, where many houses (objects) can be made from the same blueprint (class).
+        </p>
+        <h2>Class Method</h2>
+        <p>
+            A method that is bound to the class and not to the object of the class. Takes a class parameter that points to the actual class and not the object instance. Can modify parts of the class (like a class variable) that would then apply to all instances of the class. Class methods are generally used to create factory methods.
+        </p>
+        <h2>Constructor</h2>
+        <p>
+            A special kind of method that Python calls when it instantiates an object. Can be used to initialize any instance variables the object will need. All classes must have a constructor.
+        </p>
+        <h2>Design Patterns Used</h2>
+        <p>
+            Design Patterns are a common way of solving well known problems. In terms of how they're used for Python, they represent the best ways to structure your code to achieve the desired outcome, particularly in regard to creating and defining classes, methods, objects, etc.
+        </p>
+        <h2>Facade</h2>
+        <p>
+            A structural design pattern that provides a simpler unified interface to a more complex system or framework. It provides an easier way to access methods of the underlying systems by providing a single entry point.
+        </p>
+        <h2>Factory</h2>
+        <p>
+            A creational design pattern that allows an interface or class to create an object but lets subclasses decide which class or object to instantiate. It allows objects to be created without exposing the logic to the user, and allows the user to use the same common interface each time.
+        </p>
+        <h2>Fixture</h2>
+        <p>
+            In testing, a fixture provides a defined and consistent context for each test. In Pytest, they are functions that we define for this purpose.
+        </p>
+        <h2>Instantiation</h2>
+        <p>
+            Creating a copy of a class which inherits all class variables and methods. This is done through the constructor method of the class, and the copy that is created is an object.
+        </p>
+        <h2>Method</h2>
+        <p>
+            A function that is defined within the body of a class. A method typically takes a class instance as its first parameter, passed as <code>self</code>.
+        </p>
+        <h2>Namespace</h2>
+        <p>
+            The unique place where an object is stored. This object might be a variable or a method.
+        </p>
+        <h2>Object</h2>
+        <p>
+            A collection of data (variables) and methods (functions) that act on that data. If a class is the blueprint for a house, an object is one of the houses built from that blueprint.
+        </p>
+        <h2>OOP</h2>
+        <p>
+            Acronym for "Object-Oriented Programming." OOP is a model of computer programming that organizes software design around data (objects) rather than functions or logic. Python is an OOP language.
+        </p>
+        <h2>Static Method</h2>
+        <p>
+            A method that is bound to the class and not to the object of the class. A static method cannot access or modify the state of a class, unlike a class method. Static methods are generally used to create utility functions for a class.
+        </p>
+        <h2>Type Cast</h2>
+        <p>
+            Type casting is the act of changing one data type into another. For example, converting an <code>int</code> into a <code>float</code>.
+        </p>
+        <h2>Type Hint</h2>
+        <p>
+            An annotation that specifies the expected type for a variable, a class attribute, or a function parameter. Type hints are optional and not enforced by Python but can be very useful.
+        </p>
+        <h2>Unit Test</h2>
+        <p>
+            A software testing method by which individual units of source code are put under various tests to determine whether they perform as intended. It is often the first level of software testing.
+        </p>
+    </article>
+    <hr>
+    <footer id="footer" class="clearFix">
+        <p>
+            <a href="https://commons.wikimedia.org/w/index.php?curid=70845534">"File:Fediverse logo proposal.svg"</a><span> by <a href="https://commons.wikimedia.org/wiki/User:Eukombos">Eukombos</a></span> is licensed under <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en?ref=ccsearch&atype=html">CC0 1.0</a>
+        </p>
+        <p>
+            <a href="https://github.com/kc625/calc2/tree/calc_refactor">Link to GitHub Repository for the Calculator</a>
+        </p>
+        <p>
+            <a href="https://github.com/kc625/is601-project1/tree/Project_2">Link to GitHub Repository for these Articles</a>
+        </p>
+        <img src="images/w3c.png" alt="W3C Validated"/>
+    </footer>
+</div>
+</body>
+</html>
