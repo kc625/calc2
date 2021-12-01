@@ -1,4 +1,5 @@
 # Calculator Project Setup
+
 ![Screenshot](https://i.imgur.com/IYEpWyb.png)
 
 [Link to Project 2: Python Articles](http://pythoncalculator818.eastus.azurecontainer.io)
