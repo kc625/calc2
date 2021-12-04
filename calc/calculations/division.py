@@ -9,6 +9,6 @@ class Division(Calculation):
         quotient = self.values[0]
         for value in self.values[1:]:
             if value == 0.0:
-                return "Error, cannot divide by zero."
+                return "Error: cannot divide by zero."
             quotient = quotient / value
         return quotient
