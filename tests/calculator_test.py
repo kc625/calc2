@@ -2,6 +2,7 @@
 import pytest
 from calc.calculator import Calculator
 from calc.history.calculations import Calculations
+from data_utilities.csv_reader import ReadCSV
 
 @pytest.fixture
 def clear_history_fixture():
@@ -42,3 +43,32 @@ def test_calculator_divide_by_zero(clear_history_fixture):
     my_tuple = (18.0, 3.0, 0.0)
     Calculator.divide_numbers(my_tuple)
     assert Calculator.get_last_result_value() == "Error, cannot divide by zero."
+
+
+def test_calculator_add_csv(clear_history_fixture):
+    """Testing the add method of the calculator with a csv"""
+    # pylint: disable=redefined-outer-name,unused-argument,not-an-iterable,invalid-sequence-index
+    test_df = ReadCSV.get_data('tests/test_data/addition_sample.csv')
+    for index in test_df.index:
+        assert  test_df['value_1'][index] + test_df['value_2'][index] == test_df['result'][index]
+
+def test_calculator_subtract_csv(clear_history_fixture):
+    """Testing the subtract method of the calculator with a csv"""
+    # pylint: disable=redefined-outer-name,unused-argument,not-an-iterable,invalid-sequence-index
+    test_df = ReadCSV.get_data('tests/test_data/subtraction_sample.csv')
+    for index in test_df.index:
+        assert  test_df['value_1'][index] - test_df['value_2'][index] == test_df['result'][index]
+
+def test_calculator_multiply_csv(clear_history_fixture):
+    """Testing the multiply method of the calculator with a csv"""
+    # pylint: disable=redefined-outer-name,unused-argument,not-an-iterable,invalid-sequence-index
+    test_df = ReadCSV.get_data('tests/test_data/multiplication_sample.csv')
+    for index in test_df.index:
+        assert  test_df['value_1'][index] * test_df['value_2'][index] == test_df['result'][index]
+
+def test_calculator_divide_csv(clear_history_fixture):
+    """Testing the divide method of the calculator with a csv"""
+    # pylint: disable=redefined-outer-name,unused-argument,not-an-iterable,invalid-sequence-index
+    test_df = ReadCSV.get_data('tests/test_data/division_sample.csv')
+    for index in test_df.index:
+        assert  test_df['value_1'][index] / test_df['value_2'][index] == test_df['result'][index]
