@@ -1,10 +1,8 @@
 """This tests the Calculator class"""
 import pytest
-import datetime
 from calc.calculator import Calculator
 from calc.history.calculations import Calculations
 from data_utilities.csv_reader import ReadCSV
-from data_utilities.csv_writer import WriteCSV
 
 @pytest.fixture
 def clear_history_fixture():
