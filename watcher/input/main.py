@@ -2,6 +2,8 @@
 import time
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
+from data_utilities.csv_reader import ReadCSV
+from data_utilities.csv_writer import WriteCSV
 
 if __name__ == "__main__":
     patterns = ["*"]
