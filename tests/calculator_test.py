@@ -1,8 +1,10 @@
 """This tests the Calculator class"""
 import pytest
+import os
 from calc.calculator import Calculator
 from calc.history.calculations import Calculations
 from data_utilities.csv_reader import ReadCSV
+from data_utilities.csv_writer import WriteCSV
 from data_utilities.absolute_path import absolutepath
 
 @pytest.fixture
@@ -56,3 +58,14 @@ def test_calculator_divide_by_zero(clear_history_fixture):
     my_tuple = (18.0, 3.0, 0.0)
     Calculator.divide_numbers(my_tuple)
     assert Calculator.get_last_result_value() == "Error: cannot divide by zero."
+
+def test_write_csv(clear_history_fixture):
+    """Testing the write csv method"""
+    # pylint: disable=redefined-outer-name,unused-argument
+    test_csv = absolutepath('tests/test_data/addition_sample.csv')
+    test_df = ReadCSV.get_data(test_csv)
+    file_name = 'csv_output.csv'
+    path = 'tests/logs'
+    full_path = path + '/' + file_name
+    WriteCSV.write_csv_file(test_df, full_path)
+    assert os.path.exists(full_path)
