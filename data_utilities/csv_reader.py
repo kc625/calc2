@@ -29,26 +29,26 @@ class ReadCSV:
     def add_file(csv_data):
         """Adds the rows of data"""
         for row in enumerate(csv_data):
-            Calculator.add_numbers(tuple(row[1]))
+            Calculator.addition(tuple(row[1]))
         return 'add', Calculations.history
 
     @staticmethod
     def subtract_file(csv_data):
         """Subtracts the rows of data"""
         for row in enumerate(csv_data):
-            Calculator.subtract_numbers(tuple(row[1]))
+            Calculator.subtraction(tuple(row[1]))
         return 'subtract', Calculations.history
 
     @staticmethod
     def multiply_file(csv_data):
         """Multiplies the rows of data"""
         for row in enumerate(csv_data):
-            Calculator.multiply_numbers(tuple(row[1]))
+            Calculator.multiplication(tuple(row[1]))
         return 'multiply', Calculations.history
 
     @staticmethod
     def divide_file(csv_data):
         """Divides the rows of data"""
         for row in enumerate(csv_data):
-            Calculator.divide_numbers(tuple(row[1]))
+            Calculator.division(tuple(row[1]))
         return 'divide', Calculations.history

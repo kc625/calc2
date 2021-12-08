@@ -10,25 +10,25 @@ class Calculator:
         return Calculations.get_last_calculation_result()
 
     @staticmethod
-    def add_numbers(tuple_values: tuple):
+    def addition(tuple_values: tuple):
         """Adds a tuple of numbers together"""
         Calculations.add_addition_calculation(tuple_values)
         return True
 
     @staticmethod
-    def subtract_numbers(tuple_values: tuple):
+    def subtraction(tuple_values: tuple):
         """Subtracts a tuple of numbers from the first value"""
         Calculations.add_subtraction_calculation(tuple_values)
         return True
 
     @staticmethod
-    def multiply_numbers(tuple_values: tuple):
+    def multiplication(tuple_values: tuple):
         """Multiplies a tuple of numbers together"""
         Calculations.add_multiplication_calculation(tuple_values)
         return True
 
     @staticmethod
-    def divide_numbers(tuple_values: tuple):
+    def division(tuple_values: tuple):
         """Divides number in tuple by the next, returns error if any # after the first is 0"""
         Calculations.add_division_calculation(tuple_values)
         return True
