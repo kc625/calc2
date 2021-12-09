@@ -10,7 +10,12 @@
 {% endblock %}
 {% block content %}
 
-    <h1>HTML Form</h1>
+    <h1>My Calculator</h1>
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
 
     <form action="/calculator" method="POST">
         <label for="value1">Value 1:</label><br>

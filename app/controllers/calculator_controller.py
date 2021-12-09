@@ -10,9 +10,9 @@ class CalculatorController(ControllerBase):
     def post():
         """Post method"""
         if request.form['value1'] == '' or request.form['value2'] == '':
-            error = 'You must enter a value for both Value 1 and Value 2'
+            error = 'WARNING: You must enter a value for both Value 1 and Value 2'
         else:
-            flash('Success! Here is your calculation:')
+            flash('Success! Here are your calculation results:')
 
             value1 = request.form['value1']
             value2 = request.form['value2']

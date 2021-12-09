@@ -1,5 +1,11 @@
-# Calculator Project Setup
-![Screenshot](https://i.imgur.com/XJWVgxy.png)
+# Calculator Project 3 Setup
+![Screenshot 1](https://i.imgur.com/xpMEBgQ.png)
+
+![Screenshot 1](https://i.imgur.com/JL1uF6S.png)
+
+![Screenshot 1](https://i.imgur.com/iLbfku1.png)
+
+![Screenshot 1](https://i.imgur.com/HvUlXxZ.png)
 
 Run Pip Install
 pip install -r requirements.txt
