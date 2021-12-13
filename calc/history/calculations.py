@@ -1,4 +1,5 @@
 """Calculation history class"""
+import pandas as pd
 from calc.calculations.addition import Addition
 from calc.calculations.subtraction import Subtraction
 from calc.calculations.multiplication import Multiplication
@@ -8,7 +9,24 @@ class Calculations:
     """This class works with the history of the calculator"""
 
     history = []
+    data = {}
     # pylint: disable=too-few-public-methods
+
+    @staticmethod
+    def get_data():
+        """Returns data attribute"""
+        return Calculations.data
+
+    @staticmethod
+    def append_data(value_1, value_2, operation, result):
+        """Adds calculation result to data"""
+        Calculations.data = {
+            'Value 1': [value_1],
+            'Value 2': [value_2],
+            'Operation': [operation],
+            'Result': [result]
+        }
+        return True
 
     @staticmethod
     def clear_history():

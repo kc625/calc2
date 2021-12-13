@@ -17,6 +17,14 @@ class WriteCSV:
         return True
 
     @staticmethod
+    def append_csv_file(data, csv_location):
+        """Adds data to an existing csv file"""
+        data_frame = pd.DataFrame(data)
+        abs_location = absolutepath(csv_location)
+        data_frame.to_csv(abs_location, mode='a', index=False, header=False)
+        return True
+
+    @staticmethod
     def make_log_files(csv):
         """Creates the log files for processing a csv"""
         csv_file_name = csv.split('/')[-1]
