@@ -3,7 +3,6 @@ from app.controllers.controller import ControllerBase
 from calc.calculator import Calculator
 from calc.history.calculations import Calculations
 from data_utilities.csv_writer import WriteCSV
-from data_utilities.csv_reader import ReadCSV
 from flask import render_template, request, flash, redirect, url_for
 
 class CalculatorController(ControllerBase):

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Calculation History</h1>
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Value 1</th>
+        <th>Value 2</th>
+        <th>Operation</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for key,value in data.iterrows() %}
+        <tr>
+            <td>{{ value['Value1'] }}</td>
+            <td>{{ value['Value2'] }}</td>
+            <td>{{ value['Operation'] }}</td>
+            <td>{{ value['Result'] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
