@@ -4,10 +4,22 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
-    <h1>Kyle's Calculator Webpage</h1>
+    <h1>Home</h1>
     <hr>
     <p>
-      Welcome to my awesome homepage.
-        <img height="200" width="200" src="{{ url_for('static', filename='images/fediverse_logo_proposal.svg') }}">
+        <img height="125" width="125" src="{{ url_for('static', filename='images/fediverse_logo_proposal.svg') }}"> <span style="font-size: xxx-large">Welcome To My Calculator Webpage!</span>
     </p>
+    <h2>What is the Purpose of this Webpage?</h2>
+    <p>
+        This webpage is connected to a behind-the-scenes Calculator that accepts inputs via an HTML form. You can find this form at the equivalently named link on the Navbar. This Calculator will process your inputs, and then the webpage will display the results for you to see! These results are also then stored in a table along with the inputs you gave to achieve that result. In fact, if you click on "Calculation History" on the Navbar, you'll see all the results that have been calculated in a pretty handy table! This table is even searchable and groupable by the operation column, should that be something you find the need to do.
+    </p>
+    <p>
+        Along with the calculator and its history, there are some reference articles included on this page as well. Links to these articles can also be found in the Navbar. These articles have a plethora of information about working with and understanding Python, and by extension other Object-Oriented Programming languages. These articles even use examples from the underlying code of our calculator to help illustrate the main points they are trying to get across. Check them out!
+    </p>
+    <hr>
+<footer>
+    <p>
+        <a href="https://commons.wikimedia.org/w/index.php?curid=70845534">"File:Fediverse logo proposal.svg"</a><span> by <a href="https://commons.wikimedia.org/wiki/User:Eukombos">Eukombos</a></span> is licensed under <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en?ref=ccsearch&atype=html">CC0 1.0</a>
+    </p>
+</footer>
 {% endblock %}

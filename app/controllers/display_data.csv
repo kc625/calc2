@@ -3,5 +3,4 @@ Value1,Value2,Operation,Result
 5,8,multiplication,40.0
 10,0,division,Error: cannot divide by zero.
 67,8,division,8.375
-
 19,6,subtraction,13.0
