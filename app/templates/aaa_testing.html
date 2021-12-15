@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block title %}Pylint{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: maroon; }
+    </style>
+{% endblock %}
+{% block content %}
+<h1>A tutorial on AAA Testing</h1>
+    <article id="primaryContent">
+        <hr>
+        <h2>AAA: Arrange, Act, Assert</h2>
+        <p>
+            When coding, it is necessary to test your program before deploying it. Testing our code allows us to make sure that the program is behaving the way we're expecting it to. Not using tests can be dangerous, as our code could be doing something totally unexpected without us knowing. So we definitely want to make tests. But how do we make good tests? One tried and true method is to follow this simple pattern: Arrange, Act, Assert.
+        </p>
+        <h3>Arrange</h3>
+        <p>
+            Arrange the inputs and targets. This step sets up the test case. Does the test require any objects to be instantiated or inputs to be created? This is where you set the stage for the rest of the test.
+        </p>
+        <h3>Act</h3>
+        <p>
+            Act on the target behavior. This step should be utilizing the main thing that we are testing. This could be calling a function or a method for one example. It should stay focused on the target behavior.
+        </p>
+        <h3>Assert</h3>
+        <p>
+            Assert expected outcomes. The actions you took during the Act step should generate some sort of response or outcome. The assert step verifies whether that outcome is what we were expecting to get. This assertion step is ultimately what decides whether the test passes or fails.
+        </p>
+        <h2>Unit Testing</h2>
+        <p>
+            I would like to use the AAA method on a unit test to verify that our Calculator program works as intended. I will first start with our Addition class. Reminder that our Addition class (like our subtraction, multiplication, and division classes) inherits our Calculation class. The code for both of them is as follows:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    class Calculation:
+        """Abstract Base Class used for the other calculations"""
+
+        def __init__(self, values: tuple):
+            """Constructor method"""
+            self.values = Calculation.convert_args_to_tuple_of_floats(values)
+
+        @classmethod
+        def create(cls, values: tuple):
+            """Factory method"""
+            return cls(values)
+
+        @staticmethod
+        def convert_args_to_tuple_of_floats(values):
+            """standardizes values to a tuple of floats"""
+            list_values_float = []
+            for item in values:
+                list_values_float.append(float(item))
+            return tuple(list_values_float)
+
+
+    class Addition(Calculation):
+        """Class for the Addition calculation"""
+
+        def get_result(self):
+            """This does the actual addition."""
+            total_sum = 0.0
+            for value in self.values:
+                total_sum = total_sum + value
+            return total_sum
+            </code>
+        </p>
+        <p>
+            The Calculation class takes a set of values and transforms them into a tuple of floats. Then an object of the Calculation class gets passed to the Addition class, which loops through the values in that tuple and adds them all together. Then we have an <code>add_numbers</code> method of our Calculator class, which takes a user input and passes it through all the way to Addition. Or at least, that's what we are expecting to happen! Let's build a test to find out if we are right.
+        </p>
+        <p>
+            First, we'll define our test function. For Pylint to recognize it the name must begin with "test." We also want it to be easily understood which function we are testing, and since we are testing the static method from our Caclculator class called <code>add_numbers</code>, we'll define our test function in the following way:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    def test_calculator_add_static():
+        """Testing the static add method of the calculator"""
+        pass
+            </code>
+        </p>
+        <p>
+            We want to make sure our calculator's history is empty before beginning our test, as existing values in the history could give us unexpected results. To do that, we will create a fixture for pytest that will be passed into our test function. This fixture will call the <code>clear_history</code> method from the Calculator's Calculations to give us the blank history we wish to start with. This will give us the following:
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    @pytest.fixture
+    def clear_history_fixture():
+        """Clears the history so that each test starts with a blank history"""
+        Calculations.clear_history()
+
+    def test_calculator_add_static(clear_history_fixture):
+        """Testing the static add method of the calculator"""
+        pass
+            </code>
+        </p>
+        <p>
+            Now we will need to fill out the body of our test function, keeping AAA in mind. First, we Arrange by creating a tuple we are going to pass as a parameter.
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    @pytest.fixture
+    def clear_history_fixture():
+        """Clears the history so that each test starts with a blank history"""
+        Calculations.clear_history()
+
+    def test_calculator_add_static(clear_history_fixture):
+        """Testing the static add method of the calculator"""
+        <span style="color: green">#Arrange</span>
+        my_tuple = (1.0, 3.0, 5.0)
+            </code>
+        </p>
+        <p>
+            Next, we Act by calling the Calculator's <code>add_numbers</code> method and passing it the tuple we just created.
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    @pytest.fixture
+    def clear_history_fixture():
+        """Clears the history so that each test starts with a blank history"""
+        Calculations.clear_history()
+
+    def test_calculator_add_static(clear_history_fixture):
+        """Testing the static add method of the calculator"""
+        <span style="color: green">#Arrange</span>
+        my_tuple = (1.0, 3.0, 5.0)
+        <span style="color: green">#Act</span>
+        Calculator.add_numbers(my_tuple)
+            </code>
+        </p>
+        <p>
+            Finally, we Assert that our Addition is working as intended by getting the result to our last calculation and checking to see if it equals what we expect it to.
+        </p>
+        <p>
+            <code style="display:block; white-space:pre-wrap">
+    @pytest.fixture
+    def clear_history_fixture():
+        """Clears the history so that each test starts with a blank history"""
+        Calculations.clear_history()
+
+    def test_calculator_add_static(clear_history_fixture):
+        """Testing the static add method of the calculator"""
+        <span style="color: green">#Arrange</span>
+        my_tuple = (1.0, 3.0, 5.0)
+        <span style="color: green">#Act</span>
+        Calculator.add_numbers(my_tuple)
+        <span style="color: green">#Assert</span>
+        assert Calculator.get_last_result_value() == 9.0
+            </code>
+        </p>
+        <p>
+            This test passes, as <code>1.0 + 3.0 + 5.0</code> does in fact equal nine. Therefore we know our Addition class is working correctly! Now we can do the same with our Subtraction, Multiplication, and Division classes to ensure that they are also working as intended. As long was follow the Arrange-Act-Assert format for our tests, we know that we are following best practices and covering all of our testing bases.
+        </p>
+    </article>
+{% endblock %}
