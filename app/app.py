@@ -1,5 +1,7 @@
 """A Flask web app"""
+# pylint: disable=no-name-in-module,import-error
 from flask import Flask
+from werkzeug.debug import DebuggedApplication
 from app.controllers.index_controller import IndexController
 from app.controllers.calculator_controller import CalculatorController
 from app.controllers.table_controller import TableController
@@ -7,7 +9,6 @@ from app.controllers.pylint_controller import PylintController
 from app.controllers.aaa_testing_controller import AAATestingController
 from app.controllers.oop_controller import OOPController
 from app.controllers.soc_controller import SOCController
-from werkzeug.debug import DebuggedApplication
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'

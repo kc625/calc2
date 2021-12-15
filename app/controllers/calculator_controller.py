@@ -1,9 +1,10 @@
 """Class for the Calculator Controller"""
+# pylint: disable=no-name-in-module,import-error,line-too-long
+from flask import render_template, request, flash
 from app.controllers.controller import ControllerBase
 from calc.calculator import Calculator
 from calc.history.calculations import Calculations
 from data_utilities.csv_writer import WriteCSV
-from flask import render_template, request, flash, redirect, url_for
 
 class CalculatorController(ControllerBase):
     """Calculator Controller class"""

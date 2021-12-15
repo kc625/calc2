@@ -1,5 +1,4 @@
 """Calculation history class"""
-import pandas as pd
 from calc.calculations.addition import Addition
 from calc.calculations.subtraction import Subtraction
 from calc.calculations.multiplication import Multiplication
@@ -10,7 +9,6 @@ class Calculations:
 
     history = []
     data = {}
-    # pylint: disable=too-few-public-methods
 
     @staticmethod
     def get_data():

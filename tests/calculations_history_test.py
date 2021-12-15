@@ -61,3 +61,15 @@ def test_get_first_calculation_object(clear_history_fixture, setup_addition_calc
     """Tests that the get first calculation object function works"""
     # pylint: disable=redefined-outer-name,unused-argument
     assert isinstance(Calculations.get_first_calculation_object(), Addition)
+
+def test_calculations_data_methods(clear_history_fixture):
+    """Tests that the get data method works, as well as the append data method"""
+    # pylint: disable=redefined-outer-name,unused-argument
+    test_data = {
+        'Value 1': [1],
+        'Value 2': [2],
+        'Operation': ['addition'],
+        'Result': [3]
+    }
+    Calculations.append_data(1, 2, 'addition', 3)
+    assert test_data == Calculations.get_data()

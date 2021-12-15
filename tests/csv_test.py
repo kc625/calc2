@@ -48,3 +48,15 @@ def test_writing_log_file_division(clear_history_fixture):
     WriteCSV.make_log_files('tests/test_data/division.csv')
     assert os.path.exists(absolutepath('tests/logs/division.csv_log.txt'))
     assert os.path.exists(absolutepath('tests/logs/division.csv_error_log.txt'))
+
+def test_append_csv(clear_history_fixture):
+    """Testing the append csv method"""
+    # pylint: disable=redefined-outer-name,unused-argument
+    test_data = {
+        'Value 1': [1],
+        'Value 2': [2],
+        'Operation': 'addition',
+        'Result': [3]
+    }
+    WriteCSV.append_csv_file(test_data, 'tests/test_data/append_test.csv')
+    assert os.path.exists(absolutepath('tests/test_data/append_test.csv'))
