@@ -1,4 +1,6 @@
-# Calculator Project 3 Setup
+# Calculator Project 3
+[Link to Project 3 Demonstration Video](https://youtu.be/jxmEKgHYzCQ)
+
 ![Screenshot 1](https://i.imgur.com/Y8DnpxH.png)
 
 ![Screenshot 1](https://i.imgur.com/eVJz3JA.png)
